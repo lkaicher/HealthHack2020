@@ -46,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
             try {
                 Thread.sleep(1000);
                 Intent intent;
-                intent = new Intent(SplashActivity.this, MainActivity.class);
+                intent = new Intent(SplashActivity.this, FoodList.class);
                 startActivity(intent);
                 finish();
             } catch (InterruptedException e) {
