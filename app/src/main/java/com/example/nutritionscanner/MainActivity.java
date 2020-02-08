@@ -3,10 +3,12 @@ package com.example.nutritionscanner;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.nutritionscanner.NutritionScannerUsers.Meal;
 import com.example.nutritionscanner.NutritionScannerUsers.User;
 import com.example.nutritionscanner.api.HTTPSingleton;
 import com.example.nutritionscanner.api.HttpSingletonCallback;
 import com.example.nutritionscanner.api.UserAPI;
+import com.example.nutritionscanner.storage.BasicStorage;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -70,10 +72,11 @@ public class MainActivity extends AppCompatActivity {
                 sing.getUPCInfo(scanContent, new HttpSingletonCallback() {
                     @Override
                     public void onSuccess(FoodItem foodItem) {
-                        calories.setText("Calories: " + foodItem.getCalories());
-                        carb.setText("Carbohydrates: " + foodItem.getCarbohydrates());
-                        protein.setText("Protein: " + foodItem.getProtein());
-                        fat.setText("Fat: " + foodItem.getTotalFat());
+                        BasicStorage basicStorage = new BasicStorage();
+                        Meal meal = new Meal("SNACK", foodItem.getTotalFat(), foodItem.getCarbohydrates(),
+                                foodItem.getProtein(), foodItem.getBrandName() + ":" + foodItem.getName());
+                        System.out.println(meal);
+                        basicStorage.saveData(MainActivity.this, meal);
                     }
                 });
 

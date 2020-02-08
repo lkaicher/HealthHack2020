@@ -39,6 +39,17 @@ public class Meal {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Meal{" +
+                "type='" + type + '\'' +
+                ", food_name='" + food_name + '\'' +
+                ", calFat=" + calFat +
+                ", calCarb=" + calCarb +
+                ", calProtein=" + calProtein +
+                '}';
+    }
 }
 
 

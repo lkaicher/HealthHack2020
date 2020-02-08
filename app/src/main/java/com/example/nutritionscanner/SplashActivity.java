@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import com.example.nutritionscanner.NutritionScannerUsers.User;
+import com.example.nutritionscanner.api.UserAPI;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -46,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
             try {
                 Thread.sleep(1000);
                 Intent intent;
-                intent = new Intent(SplashActivity.this, FoodList.class);
+                intent = new Intent(SplashActivity.this, TrackActivity.class);
                 startActivity(intent);
                 finish();
             } catch (InterruptedException e) {

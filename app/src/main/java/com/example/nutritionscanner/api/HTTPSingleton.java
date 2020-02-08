@@ -83,8 +83,8 @@ public class HTTPSingleton{
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json; charset=utf-8");
-                params.put("x-app-id", "8ef8e926");
-                params.put("x-app-key","46a141f61c0b8924383776395cdd9636");
+                params.put("x-app-id", "80c48c27");
+                params.put("x-app-key","683142960fb37d0eea88c2973310376c");
                 return params;
             }
         };
