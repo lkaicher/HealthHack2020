@@ -23,5 +23,15 @@ public class Meal {
                 type = Type.SNACK;
         }
     }
+    public int getFat(){
+        return numCalories[0];
     }
+    public int getCarb(){
+        return numCalories[1];
+    }
+    public int getProtein(){
+        return numCalories[2];
+    }
+    }
+
 
