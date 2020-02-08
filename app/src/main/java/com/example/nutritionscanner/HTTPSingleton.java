@@ -1,6 +1,7 @@
 package com.example.nutritionscanner;
 
 import android.content.Context;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -11,6 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +47,7 @@ public class HTTPSingleton{
         getRequestQueue().add(req);
     }
 
-    public void getUPCInfo(String upc) {
+    public void getUPCInfo(String upc, final TextView calories, final TextView carb, final TextView protein, final TextView fat) {
         System.out.println("nutrition");
         String url = String.format(
                 "https://trackapi.nutritionix.com/v2/search/item?upc=%s", upc);
@@ -58,6 +60,18 @@ public class HTTPSingleton{
                         try {
                             JSONObject food = response.getJSONArray("foods").getJSONObject(0);
                             FoodItem f = new FoodItem(food);
+                            StringBuilder display = new StringBuilder();
+                            display.append(f.getBrandName()).append(": ").append(f.getName());
+                            display.append("\n").append("Calories:").append(f.getCalories());
+                            display.append("\n").append("Fat:").append(f.getTotalFat());
+                            display.append("\n").append("Proteins:").append(f.getProtein());
+                            display.append("\n").append("Carb:").append(f.getCarbohydrates());
+
+                            calories.setText("Calories: " + f.getCalories());
+                            carb.setText("Carbohydrates: " + f.getCarbohydrates());
+                            protein.setText("Protein: " + f.getProtein());
+                            fat.setText("Fat: " + f.getTotalFat());
+
                             System.out.println("Response: " + f.getName());
                         } catch(Exception e) {
                             e.printStackTrace();

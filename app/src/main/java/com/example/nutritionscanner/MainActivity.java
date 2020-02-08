@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,14 +36,14 @@ public class MainActivity extends AppCompatActivity {
         //setSupportActionBar(toolbar);
 
         textView=findViewById(R.id.textView);
-        editText = findViewById(R.id.editText);
+        //editText = findViewById(R.id.editText);
         api = new UserAPI();
        //FloatingActionButton fab = findViewById(R.id.fab);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
-       FloatingActionButton fab = findViewById(R.id.fab);
+       ImageButton fab = findViewById(R.id.imageButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +67,12 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 String scanContent = result.getContents();
                 HTTPSingleton sing = HTTPSingleton.getInstance(this);
-                sing.getUPCInfo(scanContent);
+                TextView calories = findViewById(R.id.cal);
+                TextView protein = findViewById(R.id.protein);
+                TextView fat = findViewById(R.id.fat);
+                TextView carb = findViewById(R.id.carb);
+
+                sing.getUPCInfo(scanContent, calories, carb, protein, fat);
 
                 Toast.makeText(this, scanContent, Toast.LENGTH_SHORT).show();
                 Log.d("ScanActivity", "Scanned");
