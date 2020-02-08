@@ -7,10 +7,12 @@
     tools:context=".SplashActivity">
     style="@style/AppTheme"
     <TextView
+
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
+
         android:text="Nutrition Scanner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
