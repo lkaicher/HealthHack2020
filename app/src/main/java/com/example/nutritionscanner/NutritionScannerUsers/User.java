@@ -1,6 +1,10 @@
 package com.example.nutritionscanner.NutritionScannerUsers;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class User implements Serializable {
     public static final double ACTIVE_MULTIPLIER = 1.375;
@@ -21,7 +25,7 @@ public class User implements Serializable {
     private int weightLBs;
     private int heightInches;
     private int age;
-
+    private ArrayList<Day> days;
     public int getAge() {
         return age;
     }
@@ -66,10 +70,10 @@ public class User implements Serializable {
         else return (int)(multiplier*bmr);
 
     }
-    public double weightLBtoKG(){
+    private double weightLBtoKG(){
         return weightLBs /2.205;
     }
-    public double heightINtoCM(){
+    private double heightINtoCM(){
         return heightInches*2.54;
     }
     public int getWeightLBs() {
@@ -117,8 +121,18 @@ public class User implements Serializable {
         this.gender = gender;
     }
     public User(){
-
+        this.days=new ArrayList<>();
     }
+
+    /**
+     * Constructs a user object from given parameters
+     * @param name name
+     * @param age age
+     * @param weight in pounds
+     * @param heightInches height in inches
+     * @param gender biological gender
+     * @param isActive Are they physically active (moderate ativity 1-3 times a day) or sedentary
+     */
     public User(String name, int age, int weight, int heightInches, String gender, boolean isActive){
         this.name=name;
         this.weightLBs =weight;
@@ -126,5 +140,16 @@ public class User implements Serializable {
         this.gender=gender;
         this.isActive = isActive;
         this.age=age;
+        this.days=new ArrayList<>();
+    }
+
+    /**
+     * Updates the date array with the day object and its date
+     * @param day Day object
+     */
+    public void addDay(Day day){
+        if(days.size()==0)
+            days.add(day);
+        days.set((int)(days.get(0).getDate().getTime()-day.getDate().getTime())/86400000, day);
     }
 }
