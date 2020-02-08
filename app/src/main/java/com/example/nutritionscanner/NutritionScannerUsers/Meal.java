@@ -5,9 +5,13 @@ public class Meal {
         BREAKFAST, LUNCH, DINNER, SNACK
     }
     Type type;
-    private int[] numCalories;
-    public Meal(String mealTime, int calFat, int calCarb, int calProtein){
-        int[] numCalories = new int[]{calFat, calCarb, calProtein};
+    int calFat,  calCarb,  calProtein;
+    String food_name;
+    public Meal(String mealTime, int calFat, int calCarb, int calProtein, String food_name){
+        this.calFat = calFat;
+        this.calCarb = calCarb;
+        this.calProtein = calProtein;
+        this.food_name = food_name;
         mealTime=mealTime.toUpperCase();
         switch(mealTime){
             case "BREAKFAST":
@@ -23,15 +27,27 @@ public class Meal {
                 type = Type.SNACK;
         }
     }
+
+    public Type getType() {
+        return type;
+    }
+
     public int getFat(){
-        return numCalories[0];
+        return calFat;
+    }
+    public String getFoodName() {
+        return food_name;
     }
     public int getCarb(){
-        return numCalories[1];
+        return calCarb;
     }
     public int getProtein(){
-        return numCalories[2];
+        return calProtein;
     }
+    public int getCalories(){
+        return getCarb()+getFat()+getProtein();
     }
+
+}
 
 
