@@ -4,16 +4,17 @@ import java.util.Date;
 
 /**
  * Day object holds meals, Breakfast, Dinner, Lunch, Snack and a Date object day.
- *
  */
 public class Day {
     /**
      * Constructs a Day object with the given day
+     *
      * @param date Date object for the requested date
      */
-    public Day(Date date){
-        this.date=date;
+    public Day(Date date) {
+        this.date = date;
     }
+
     private Meal Breakfast;
     private Meal Lunch;
     private Meal Dinner;
@@ -63,61 +64,65 @@ public class Day {
 
     /**
      * Gets total carbs for all meals this day so far
+     *
      * @return total carbs
      */
-    public int getCarbs(){
+    public int getTotalCarbs() {
         int carbs = 0;
-        if(Breakfast!=null)
-            carbs+=Breakfast.getCarb();
-        if(Lunch!=null)
-            carbs+=Lunch.getCarb();
-        if(Dinner!=null)
-            carbs+=Dinner.getCarb();
-        if(Snack!=null)
-            carbs+=Snack.getCarb();
+        if (Breakfast != null)
+            carbs += Breakfast.getCarb();
+        if (Lunch != null)
+            carbs += Lunch.getCarb();
+        if (Dinner != null)
+            carbs += Dinner.getCarb();
+        if (Snack != null)
+            carbs += Snack.getCarb();
         return carbs;
     }
 
     /**
      * Gets total fat for all meals this day so far
+     *
      * @return total fat
      */
-    public int getFat(){
-        int carbs = 0;
-        if(Breakfast!=null)
-            carbs+=Breakfast.getFat();
-        if(Lunch!=null)
-            carbs+=Lunch.getFat();
-        if(Dinner!=null)
-            carbs+=Dinner.getFat();
-        if(Snack!=null)
-            carbs+=Snack.getFat();
-        return carbs;
+    public int getTotalFat() {
+        int fat = 0;
+        if (Breakfast != null)
+            fat += Breakfast.getFat();
+        if (Lunch != null)
+            fat += Lunch.getFat();
+        if (Dinner != null)
+            fat += Dinner.getFat();
+        if (Snack != null)
+            fat += Snack.getFat();
+        return fat;
     }
 
     /**
      * gets total protein for all meals this day so far
+     *
      * @return total protein
      */
-    public int getProtein(){
-        int carbs = 0;
-        if(Breakfast!=null)
-            carbs+=Breakfast.getProtein();
-        if(Lunch!=null)
-            carbs+=Lunch.getProtein();
-        if(Dinner!=null)
-            carbs+=Dinner.getProtein();
-        if(Snack!=null)
-            carbs+=Snack.getProtein();
-        return carbs;
+    public int getTotalProtein() {
+        int protein = 0;
+        if (Breakfast != null)
+            protein += Breakfast.getProtein();
+        if (Lunch != null)
+            protein += Lunch.getProtein();
+        if (Dinner != null)
+            protein += Dinner.getProtein();
+        if (Snack != null)
+            protein += Snack.getProtein();
+        return protein;
     }
 
     /**
      * gets total calories for the day so far
+     *
      * @return total calories
      */
-    public int getCalories(){
-        return getCarbs()+getFat()+getProtein();
+    public int getTotalCalories() {
+        return getTotalCarbs() * 4 + getTotalFat() * 8 + getTotalProtein() * 4;
     }
 
 }
