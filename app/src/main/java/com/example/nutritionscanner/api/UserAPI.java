@@ -11,6 +11,10 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 
 public class UserAPI {
+    /**
+     * Adds or updates the user to database
+     * @param user Takes in user object
+     */
     public void addUser(User user){
         try {
             FileOutputStream fileOut = new FileOutputStream("NutritionScanner");
@@ -24,6 +28,11 @@ public class UserAPI {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Returns saved user object from the database
+     * @return user object
+     */
     public User readUser(){
         try {
             FileInputStream fis = new FileInputStream("NutritionScanner");
