@@ -21,31 +21,31 @@
                 android:id="@+id/item_food_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10px"></TextView>
+                android:layout_margin="10dp" />
 
             <TextView
                 android:id="@+id/item_calories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10px"></TextView>
+                android:layout_margin="10dp" />
 
             <TextView
                 android:id="@+id/item_carb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10px"></TextView>
+                android:layout_margin="10dp" />
 
             <TextView
                 android:id="@+id/item_protein"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10px"></TextView>
+                android:layout_margin="10dp" />
 
             <TextView
                 android:id="@+id/item_fat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10px"></TextView>
+                android:layout_margin="10dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -1,17 +1,15 @@
 package com.example.nutritionscanner;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nutritionscanner.NutritionScannerUsers.Meal;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private List<Meal> mDataset;
@@ -55,7 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.food_name.setText(mDataset.get(position).getFoodName());
+        holder.food_name.setText(mDataset.get(position).getType() + " : " + mDataset.get(position).getFoodName());
         holder.calories.setText("Calories:" + mDataset.get(position).getCalories());
         holder.carb.setText("Carbs:" + mDataset.get(position).getCarb());
         holder.fat.setText("Fat:" + mDataset.get(position).getFat());
