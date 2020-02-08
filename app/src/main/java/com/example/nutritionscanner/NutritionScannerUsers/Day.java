@@ -1,10 +1,33 @@
 package com.example.nutritionscanner.NutritionScannerUsers;
 
+import java.util.Date;
+
+/**
+ * Day object holds meals, Breakfast, Dinner, Lunch, Snack and a Date object day.
+ *
+ */
 public class Day {
+    /**
+     * Constructs a Day object with the given day
+     * @param date Date object for the requested date
+     */
+    public Day(Date date){
+        this.date=date;
+    }
     private Meal Breakfast;
     private Meal Lunch;
     private Meal Dinner;
     private Meal Snack;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    private Date date;
 
     public Meal getBreakfast() {
         return Breakfast;
@@ -37,6 +60,11 @@ public class Day {
     public void setSnack(Meal snack) {
         Snack = snack;
     }
+
+    /**
+     * Gets total carbs for all meals this day so far
+     * @return total carbs
+     */
     public int getCarbs(){
         int carbs = 0;
         if(Breakfast!=null)
@@ -49,6 +77,11 @@ public class Day {
             carbs+=Snack.getCarb();
         return carbs;
     }
+
+    /**
+     * Gets total fat for all meals this day so far
+     * @return total fat
+     */
     public int getFat(){
         int carbs = 0;
         if(Breakfast!=null)
@@ -61,6 +94,11 @@ public class Day {
             carbs+=Snack.getFat();
         return carbs;
     }
+
+    /**
+     * gets total protein for all meals this day so far
+     * @return total protein
+     */
     public int getProtein(){
         int carbs = 0;
         if(Breakfast!=null)
@@ -73,6 +111,11 @@ public class Day {
             carbs+=Snack.getProtein();
         return carbs;
     }
+
+    /**
+     * gets total calories for the day so far
+     * @return total calories
+     */
     public int getCalories(){
         return getCarbs()+getFat()+getProtein();
     }
