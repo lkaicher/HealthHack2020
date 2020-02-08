@@ -4,8 +4,8 @@ import org.json.JSONObject;
 
 public class FoodItem {
 
-    private String name;
-    private int calories, protein, totalFat, saturatedFat, sodium, fiber;
+    private String name, brandName;
+    private int calories, protein, totalFat, saturatedFat, sodium, fiber, sugars, carbohydrates;
 
     public FoodItem(JSONObject info) {
         try {
@@ -16,6 +16,9 @@ public class FoodItem {
             saturatedFat = info.getInt("nf_saturated_fat");
             sodium = info.getInt("nf_sodium");
             fiber = info.getInt("nf_dietary_fiber");
+            sugars = info.getInt("nf_sugars");
+            brandName = info.getString("brand_name");
+            carbohydrates = info.getInt("nf_total_carbohydrate");
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -23,6 +26,10 @@ public class FoodItem {
 
     public int getProtein() {
         return protein;
+    }
+
+    public int getSugars() {
+        return sugars;
     }
 
     public int getFiber() {
@@ -47,5 +54,13 @@ public class FoodItem {
 
     public String getName() {
         return name;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public int getCarbohydrates() {
+        return carbohydrates;
     }
 }
