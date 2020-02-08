@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("ScanActivity", "Cancelled scan");
             } else {
                 String scanContent = result.getContents();
+                HTTPSingleton sing = HTTPSingleton.getInstance(this);
+                sing.getUPCInfo(scanContent);
+
                 Toast.makeText(this, scanContent, Toast.LENGTH_SHORT).show();
                 Log.d("ScanActivity", "Scanned");
             }
