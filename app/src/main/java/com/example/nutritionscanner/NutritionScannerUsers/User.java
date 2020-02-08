@@ -1,6 +1,8 @@
 package com.example.nutritionscanner.NutritionScannerUsers;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     public static final double ACTIVE_MULTIPLIER = 1.375;
     public static final double INACTIVE_MULTIPLIER = 1.2;
     public static final int WEIGHT_GOAL_DIFF=300;
@@ -114,7 +116,9 @@ public class User {
     public void setGender(String gender) {
         this.gender = gender;
     }
+    public User(){
 
+    }
     public User(String name, int age, int weight, int heightInches, String gender, boolean isActive){
         this.name=name;
         this.weightLBs =weight;
