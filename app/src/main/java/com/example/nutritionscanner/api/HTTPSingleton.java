@@ -1,4 +1,4 @@
-package com.example.nutritionscanner;
+package com.example.nutritionscanner.api;
 
 import android.content.Context;
 import android.widget.TextView;
@@ -10,9 +10,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.nutritionscanner.FoodItem;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +47,7 @@ public class HTTPSingleton{
         getRequestQueue().add(req);
     }
 
-    public void getUPCInfo(String upc, final TextView calories, final TextView carb, final TextView protein, final TextView fat) {
+    public void getUPCInfo(String upc, final HttpSingletonCallback callback) {
         System.out.println("nutrition");
         String url = String.format(
                 "https://trackapi.nutritionix.com/v2/search/item?upc=%s", upc);
@@ -59,20 +59,8 @@ public class HTTPSingleton{
                     public void onResponse(JSONObject response) {
                         try {
                             JSONObject food = response.getJSONArray("foods").getJSONObject(0);
-                            FoodItem f = new FoodItem(food);
-                            StringBuilder display = new StringBuilder();
-                            display.append(f.getBrandName()).append(": ").append(f.getName());
-                            display.append("\n").append("Calories:").append(f.getCalories());
-                            display.append("\n").append("Fat:").append(f.getTotalFat());
-                            display.append("\n").append("Proteins:").append(f.getProtein());
-                            display.append("\n").append("Carb:").append(f.getCarbohydrates());
-
-                            calories.setText("Calories: " + f.getCalories());
-                            carb.setText("Carbohydrates: " + f.getCarbohydrates());
-                            protein.setText("Protein: " + f.getProtein());
-                            fat.setText("Fat: " + f.getTotalFat());
-
-                            System.out.println("Response: " + f.getName());
+                            FoodItem foodItems = new FoodItem(food);
+                            callback.onSuccess(foodItems);
                         } catch(Exception e) {
                             e.printStackTrace();
                         }
