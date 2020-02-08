@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "622024324853",
+    "firebase_url": "https://nutrition-scanner-e5c50.firebaseio.com",
+    "project_id": "nutrition-scanner-e5c50",
+    "storage_bucket": "nutrition-scanner-e5c50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622024324853:android:86eddbe88d6bda64d637bc",
+        "android_client_info": {
+          "package_name": "com.example.nutritionscanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622024324853-s8kfkscmjgc5r91gkjjm11u61h73b7k6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWSJCRWw6oPRTuPt0U6GnAIdf16o2I-BI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622024324853-s8kfkscmjgc5r91gkjjm11u61h73b7k6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
