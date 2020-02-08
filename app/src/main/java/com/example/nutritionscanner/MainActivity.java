@@ -4,15 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.nutritionscanner.NutritionScannerUsers.User;
-import com.example.nutritionscanner.api.NutritionScannerFireBaseAPI;
+import com.example.nutritionscanner.api.HTTPSingleton;
+import com.example.nutritionscanner.api.HttpSingletonCallback;
 import com.example.nutritionscanner.api.UserAPI;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
@@ -25,23 +23,16 @@ import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
-    TextView textView;
+    TextView calories, protein, fat, carb;
     EditText editText;
     UserAPI api;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
-        textView=findViewById(R.id.textView);
-        //editText = findViewById(R.id.editText);
+        onInit();
         api = new UserAPI();
-       //FloatingActionButton fab = findViewById(R.id.fab);
-
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
        ImageButton fab = findViewById(R.id.imageButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void onInit() {
+        calories = findViewById(R.id.cal);
+        protein = findViewById(R.id.protein);
+        fat = findViewById(R.id.fat);
+        carb = findViewById(R.id.carb);
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -67,12 +66,16 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 String scanContent = result.getContents();
                 HTTPSingleton sing = HTTPSingleton.getInstance(this);
-                TextView calories = findViewById(R.id.cal);
-                TextView protein = findViewById(R.id.protein);
-                TextView fat = findViewById(R.id.fat);
-                TextView carb = findViewById(R.id.carb);
 
-                sing.getUPCInfo(scanContent, calories, carb, protein, fat);
+                sing.getUPCInfo(scanContent, new HttpSingletonCallback() {
+                    @Override
+                    public void onSuccess(FoodItem foodItem) {
+                        calories.setText("Calories: " + foodItem.getCalories());
+                        carb.setText("Carbohydrates: " + foodItem.getCarbohydrates());
+                        protein.setText("Protein: " + foodItem.getProtein());
+                        fat.setText("Fat: " + foodItem.getTotalFat());
+                    }
+                });
 
                 Toast.makeText(this, scanContent, Toast.LENGTH_SHORT).show();
                 Log.d("ScanActivity", "Scanned");
@@ -86,18 +89,6 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    public void testFunction(View view){
-        textView.setText("hi");
-        System.out.println("foo");
-        UserAPI api = new UserAPI();
-        User user = new User(editText.getText().toString(), 20, 200, 100,  "male", true);
-        api.addUser(user);
-        System.out.println(user.getName());
-    }
-    public void printName(View view){
-        textView.setText(api.readUser().getName());
     }
 
     @Override
