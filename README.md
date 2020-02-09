@@ -4,4 +4,3 @@ This app allows users to track calories automatically from foods they scan, coll
 
 Allows for customizeable caloric targets to meet user demands and modifies user based on formulas using biometric information from the user such as Height, Weight, Age, etc.
 
-Credits: 
